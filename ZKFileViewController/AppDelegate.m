@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ZKFileViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,8 +16,50 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self createDirectory];
+    
+    ZKFileViewController *fileVC = [[ZKFileViewController alloc]init];
+    UINavigationController *naviga = [[UINavigationController alloc]initWithRootViewController:fileVC];
+    self.window.rootViewController = naviga;
     return YES;
+}
+
+-(void)createDirectory{
+    NSFileManager *fileManger = [NSFileManager defaultManager];
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSArray *paths = @[@"one",@"one/1",@"two/2",@"one/1/1111",@"ffff",@"teo",@"in",@"in/inin",@"in/in2/in3"];
+    
+    for (NSString *path in paths) {
+        NSString *directoryPath = [documentPath stringByAppendingPathComponent:path];
+        [fileManger createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSData *data = [NSData data];
+    
+    NSString *path = documentPath;
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"rere.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"ffdsf.mov"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"fgfgs.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"fdfd.aud"] contents:data attributes:nil];
+
+    path = [documentPath stringByAppendingPathComponent:paths[0]];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"rere.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"ffdsf.mov"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"fgfgs.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"fdfd.aud"] contents:data attributes:nil];
+    
+    path = [documentPath stringByAppendingPathComponent:paths[1]];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"44e.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"5f.m5ov"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"f55fgs.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"fdfd.aud"] contents:data attributes:nil];
+    
+    path = [documentPath stringByAppendingPathComponent:paths[3]];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"44e.mov"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"5f.mov"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"gs.png"] contents:data attributes:nil];
+    [fileManger createFileAtPath:[path stringByAppendingPathComponent:@"fdfd.aud"] contents:data attributes:nil];
+
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

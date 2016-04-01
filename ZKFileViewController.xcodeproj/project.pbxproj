@@ -14,6 +14,11 @@
 		9BC6BAC31CACC66B0008FDD8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAC21CACC66B0008FDD8 /* Images.xcassets */; };
 		9BC6BAC61CACC66B0008FDD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAC41CACC66B0008FDD8 /* LaunchScreen.xib */; };
 		9BC6BAD21CACC66B0008FDD8 /* ZKFileViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BAD11CACC66B0008FDD8 /* ZKFileViewControllerTests.m */; };
+		9BC6BADD1CACC6AF0008FDD8 /* ZKFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BADC1CACC6AF0008FDD8 /* ZKFileViewController.m */; };
+		9BC6BAE41CACD2430008FDD8 /* directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE01CACD2430008FDD8 /* directory.png */; };
+		9BC6BAE51CACD2430008FDD8 /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE11CACD2430008FDD8 /* file.png */; };
+		9BC6BAE61CACD2430008FDD8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE21CACD2430008FDD8 /* image.png */; };
+		9BC6BAE71CACD2430008FDD8 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE31CACD2430008FDD8 /* video.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,12 @@
 		9BC6BACB1CACC66B0008FDD8 /* ZKFileViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZKFileViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC6BAD01CACC66B0008FDD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC6BAD11CACC66B0008FDD8 /* ZKFileViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKFileViewControllerTests.m; sourceTree = "<group>"; };
+		9BC6BADC1CACC6AF0008FDD8 /* ZKFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKFileViewController.m; sourceTree = "<group>"; };
+		9BC6BADE1CACC8080008FDD8 /* ZKFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKFileViewController.h; sourceTree = "<group>"; };
+		9BC6BAE01CACD2430008FDD8 /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory.png; sourceTree = "<group>"; };
+		9BC6BAE11CACD2430008FDD8 /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		9BC6BAE21CACD2430008FDD8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		9BC6BAE31CACD2430008FDD8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +96,9 @@
 				9BC6BABA1CACC66B0008FDD8 /* AppDelegate.m */,
 				9BC6BABC1CACC66B0008FDD8 /* ViewController.h */,
 				9BC6BABD1CACC66B0008FDD8 /* ViewController.m */,
+				9BC6BADE1CACC8080008FDD8 /* ZKFileViewController.h */,
+				9BC6BADC1CACC6AF0008FDD8 /* ZKFileViewController.m */,
+				9BC6BADF1CACD2430008FDD8 /* resouse */,
 				9BC6BABF1CACC66B0008FDD8 /* Main.storyboard */,
 				9BC6BAC21CACC66B0008FDD8 /* Images.xcassets */,
 				9BC6BAC41CACC66B0008FDD8 /* LaunchScreen.xib */,
@@ -117,6 +131,17 @@
 				9BC6BAD01CACC66B0008FDD8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9BC6BADF1CACD2430008FDD8 /* resouse */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6BAE01CACD2430008FDD8 /* directory.png */,
+				9BC6BAE11CACD2430008FDD8 /* file.png */,
+				9BC6BAE21CACD2430008FDD8 /* image.png */,
+				9BC6BAE31CACD2430008FDD8 /* video.png */,
+			);
+			path = resouse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +225,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC6BAC11CACC66B0008FDD8 /* Main.storyboard in Resources */,
+				9BC6BAE51CACD2430008FDD8 /* file.png in Resources */,
+				9BC6BAE41CACD2430008FDD8 /* directory.png in Resources */,
 				9BC6BAC61CACC66B0008FDD8 /* LaunchScreen.xib in Resources */,
 				9BC6BAC31CACC66B0008FDD8 /* Images.xcassets in Resources */,
+				9BC6BAE71CACD2430008FDD8 /* video.png in Resources */,
+				9BC6BAE61CACD2430008FDD8 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC6BABE1CACC66B0008FDD8 /* ViewController.m in Sources */,
+				9BC6BADD1CACC6AF0008FDD8 /* ZKFileViewController.m in Sources */,
 				9BC6BABB1CACC66B0008FDD8 /* AppDelegate.m in Sources */,
 				9BC6BAB81CACC66B0008FDD8 /* main.m in Sources */,
 			);
@@ -350,6 +380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZKFileViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -360,6 +391,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZKFileViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
