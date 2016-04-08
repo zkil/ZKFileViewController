@@ -10,6 +10,7 @@
 
 @interface ZKFileViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSString *rootDirectory;
+@property(nonatomic)BOOL showFileSize;
 
 -(id)initWithRootDirectory:(NSString *)rootDirectory;
 @end

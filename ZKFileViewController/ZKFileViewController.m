@@ -11,8 +11,9 @@
 #define SCREEN_FRAME [UIScreen mainScreen].bounds
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define DOCUMENT_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
-@interface ZKFileViewController ()
+@interface ZKFileViewController ()<UIAlertViewDelegate>
 {
     NSFileManager *_fileManager;
     UITableView *_fileTable;
@@ -21,7 +22,8 @@
     NSString *_currentPath;
     NSString *_parentPath;
     
-        BOOL _isRoot;
+    BOOL _isRoot;
+    BOOL _deleteIndex;
 }
 @end
 
@@ -36,7 +38,7 @@
 
 -(NSString *)rootDirectory{
     if (_rootDirectory == nil) {
-        _rootDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+        _rootDirectory = DOCUMENT_PATH;
     }
     return _rootDirectory;
 }
@@ -44,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    _currentPath = self.rootDirectory;
+    self.title = [_currentPath lastPathComponent];
     
     
     _fileManager = [NSFileManager defaultManager];
@@ -53,6 +56,15 @@
     _fileTable.dataSource = self;
     [_fileTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:_fileTable];
+    
+    
+    if ([ _fileTable respondsToSelector:@selector(setSeparatorInset:)]) {
+        [ _fileTable setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+    if ([ _fileTable respondsToSelector:@selector(setLayoutMargins:)])  {
+        [ _fileTable setLayoutMargins:UIEdgeInsetsZero];
+    }
     
     [self loadPath];
     
@@ -83,12 +95,11 @@
     NSMutableArray *filePaths = [NSMutableArray new];
     NSMutableArray *directoryPaths = [NSMutableArray new];
     
-    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+
     
     for (NSString *path in _paths) {
         BOOL isDectory;
         BOOL flag = [_fileManager fileExistsAtPath:[_currentPath stringByAppendingPathComponent:path] isDirectory:&isDectory];
-        NSLog(@"%@ %d %d",[documentPath stringByAppendingPathComponent:path],isDectory,flag);
         if (flag && isDectory) {
             [directoryPaths addObject:path];
         }else if (flag && !isDectory){
@@ -113,41 +124,49 @@
     UIImage *image;
     BOOL isDirectory;
     BOOL flag = [_fileManager fileExistsAtPath:directoryPath isDirectory:&isDirectory];
-    if (flag && isDirectory) {
-        image = [UIImage imageNamed:@"directory.png"];
-    }else if(flag && !isDirectory){
-        if ([directoryPath hasSuffix:@".png"]) {
-            image = [UIImage imageNamed:@"image.png"];
-        }else if ([directoryPath hasSuffix:@".mov"]||[path hasSuffix:@".mp4"]){
-            image = [UIImage imageNamed:@"video.png"];
+    
+    NSString *pathComponent= [path lastPathComponent];
+    
+    if (flag) {
+        if (isDirectory) {
+            
+             image = [UIImage imageNamed:@"directory.png"];
         }else{
-            image = [UIImage imageNamed:@"file.png"];
+            
+            if ([directoryPath hasSuffix:@".png"]) {
+                image = [UIImage imageNamed:@"image.png"];
+            }else if ([directoryPath hasSuffix:@".mov"]||[path hasSuffix:@".mp4"]){
+                image = [UIImage imageNamed:@"video.png"];
+            }else{
+                image = [UIImage imageNamed:@"file.png"];
+            }
         }
-    }else if(!flag){
+        CGFloat fileSize = [self folderSizeAtPath:[_currentPath stringByAppendingPathComponent:pathComponent]];
+        if (fileSize > 0 && self.showFileSize) {
+            pathComponent = [NSString stringWithFormat:@"%@ ( %.2fm )",pathComponent,fileSize];
+        }
+        
+    }else{
         image = [UIImage imageNamed:@"directory.png"];
     }
     cell.imageView.image = image;
-    NSString *pathComponent= [path lastPathComponent];
+    
     cell.textLabel.text = pathComponent;
 
-    
-
-    
-    
-    
 
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *path = _paths[indexPath.row];
     
     if (!_isRoot && indexPath.row == 0) {
         _currentPath = _parentPath;
         [self loadPath];
     }
     else{
-        NSString *path = _paths[indexPath.row];
+        
         BOOL isDiretory;
         BOOL flag = [_fileManager fileExistsAtPath:[_currentPath stringByAppendingPathComponent:path] isDirectory:&isDiretory];
         if (flag && isDiretory) {
@@ -159,6 +178,8 @@
         }
 
     }
+    
+    self.title = [_currentPath lastPathComponent];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,8 +187,78 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *path = [_currentPath stringByAppendingPathComponent:_paths[indexPath.row]];
+        NSLog(@"%@",path);
+#ifdef __IPHONE_8_0
+        UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"刪除" message:@"刪除后無法恢復，是否刪除?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cacelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSError *error;
+           
+            [_fileManager removeItemAtPath:path error:&error];
+            [self loadPath];
+        }];
+        [alertC addAction:cacelAction];
+        [alertC addAction:submitAction];
+        [self presentViewController:alertC animated:YES completion:nil];
+#else
+        _deleteIndex = indexPath.row;
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"刪除" message:@"刪除后無法恢復，是否刪除?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"確定", nil];
+        [alertView show];
+#endif
+        
+        
+    }
+
+}
+
+- (long long) fileSizeAtPath:(NSString*) filePath{
+    
+    NSFileManager* manager = [NSFileManager defaultManager];
+    
+    if ([manager fileExistsAtPath:filePath]){
+        
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+
+- (float ) folderSizeAtPath:(NSString*) folderPath{
+    
+    NSFileManager* manager = [NSFileManager defaultManager];
+    
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    
+    NSString* fileName;
+    
+    long long folderSize = 0;
+    
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        BOOL isDir;
+        if ([_fileManager fileExistsAtPath:fileAbsolutePath isDirectory:&isDir]) {
+            if (isDir) {
+                folderSize += [self folderSizeAtPath:fileAbsolutePath];
+            }else{
+                folderSize += [self fileSizeAtPath:fileAbsolutePath];
+            }
+        }
+    }
+    
+    return folderSize/(1024.0*1024.0);
     
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *path = [_currentPath stringByAppendingPathComponent:_paths[_deleteIndex]];
+    [_fileManager removeItemAtPath:path error:nil];
+    [self loadPath];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

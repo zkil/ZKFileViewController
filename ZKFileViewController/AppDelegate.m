@@ -19,6 +19,7 @@
     [self createDirectory];
     
     ZKFileViewController *fileVC = [[ZKFileViewController alloc]init];
+    fileVC.showFileSize = YES;
     UINavigationController *naviga = [[UINavigationController alloc]initWithRootViewController:fileVC];
     self.window.rootViewController = naviga;
     return YES;

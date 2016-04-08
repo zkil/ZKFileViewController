@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F538F486-00C5-4C99-B0B8-A926B7F1C6D1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ZKFileViewController</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FC65C292BCBD37C0A9E1FAA55C88797DFFF124E6</key>
+		<string>https://github.com/zkil/ZKFileViewController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ZKFileViewController.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FC65C292BCBD37C0A9E1FAA55C88797DFFF124E6</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/zkil/ZKFileViewController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FC65C292BCBD37C0A9E1FAA55C88797DFFF124E6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FC65C292BCBD37C0A9E1FAA55C88797DFFF124E6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ZKFileViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

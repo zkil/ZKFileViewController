@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9BA7BE591CB754610060C0C7 /* directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE511CB754610060C0C7 /* directory.png */; };
+		9BA7BE5A1CB754610060C0C7 /* directory@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE521CB754610060C0C7 /* directory@3x.png */; };
+		9BA7BE5B1CB754610060C0C7 /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE531CB754610060C0C7 /* file.png */; };
+		9BA7BE5C1CB754610060C0C7 /* file@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE541CB754610060C0C7 /* file@3x.png */; };
+		9BA7BE5D1CB754610060C0C7 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE551CB754610060C0C7 /* image.png */; };
+		9BA7BE5E1CB754610060C0C7 /* image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE561CB754610060C0C7 /* image@3x.png */; };
+		9BA7BE5F1CB754610060C0C7 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE571CB754610060C0C7 /* video.png */; };
+		9BA7BE601CB754610060C0C7 /* video@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE581CB754610060C0C7 /* video@3x.png */; };
 		9BC6BAB81CACC66B0008FDD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BAB71CACC66B0008FDD8 /* main.m */; };
 		9BC6BABB1CACC66B0008FDD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BABA1CACC66B0008FDD8 /* AppDelegate.m */; };
 		9BC6BABE1CACC66B0008FDD8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BABD1CACC66B0008FDD8 /* ViewController.m */; };
@@ -15,10 +23,6 @@
 		9BC6BAC61CACC66B0008FDD8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAC41CACC66B0008FDD8 /* LaunchScreen.xib */; };
 		9BC6BAD21CACC66B0008FDD8 /* ZKFileViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BAD11CACC66B0008FDD8 /* ZKFileViewControllerTests.m */; };
 		9BC6BADD1CACC6AF0008FDD8 /* ZKFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6BADC1CACC6AF0008FDD8 /* ZKFileViewController.m */; };
-		9BC6BAE41CACD2430008FDD8 /* directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE01CACD2430008FDD8 /* directory.png */; };
-		9BC6BAE51CACD2430008FDD8 /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE11CACD2430008FDD8 /* file.png */; };
-		9BC6BAE61CACD2430008FDD8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE21CACD2430008FDD8 /* image.png */; };
-		9BC6BAE71CACD2430008FDD8 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6BAE31CACD2430008FDD8 /* video.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9BA7BE511CB754610060C0C7 /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory.png; sourceTree = "<group>"; };
+		9BA7BE521CB754610060C0C7 /* directory@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directory@3x.png"; sourceTree = "<group>"; };
+		9BA7BE531CB754610060C0C7 /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
+		9BA7BE541CB754610060C0C7 /* file@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file@3x.png"; sourceTree = "<group>"; };
+		9BA7BE551CB754610060C0C7 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		9BA7BE561CB754610060C0C7 /* image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image@3x.png"; sourceTree = "<group>"; };
+		9BA7BE571CB754610060C0C7 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
+		9BA7BE581CB754610060C0C7 /* video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video@3x.png"; sourceTree = "<group>"; };
 		9BC6BAB21CACC66B0008FDD8 /* ZKFileViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZKFileViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC6BAB61CACC66B0008FDD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC6BAB71CACC66B0008FDD8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,10 +59,6 @@
 		9BC6BAD11CACC66B0008FDD8 /* ZKFileViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKFileViewControllerTests.m; sourceTree = "<group>"; };
 		9BC6BADC1CACC6AF0008FDD8 /* ZKFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKFileViewController.m; sourceTree = "<group>"; };
 		9BC6BADE1CACC8080008FDD8 /* ZKFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKFileViewController.h; sourceTree = "<group>"; };
-		9BC6BAE01CACD2430008FDD8 /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory.png; sourceTree = "<group>"; };
-		9BC6BAE11CACD2430008FDD8 /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
-		9BC6BAE21CACD2430008FDD8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
-		9BC6BAE31CACD2430008FDD8 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9BA7BE501CB754610060C0C7 /* resouse */ = {
+			isa = PBXGroup;
+			children = (
+				9BA7BE511CB754610060C0C7 /* directory.png */,
+				9BA7BE521CB754610060C0C7 /* directory@3x.png */,
+				9BA7BE531CB754610060C0C7 /* file.png */,
+				9BA7BE541CB754610060C0C7 /* file@3x.png */,
+				9BA7BE551CB754610060C0C7 /* image.png */,
+				9BA7BE561CB754610060C0C7 /* image@3x.png */,
+				9BA7BE571CB754610060C0C7 /* video.png */,
+				9BA7BE581CB754610060C0C7 /* video@3x.png */,
+			);
+			path = resouse;
+			sourceTree = "<group>";
+		};
 		9BC6BAA91CACC66A0008FDD8 = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +121,8 @@
 				9BC6BABD1CACC66B0008FDD8 /* ViewController.m */,
 				9BC6BADE1CACC8080008FDD8 /* ZKFileViewController.h */,
 				9BC6BADC1CACC6AF0008FDD8 /* ZKFileViewController.m */,
-				9BC6BADF1CACD2430008FDD8 /* resouse */,
 				9BC6BABF1CACC66B0008FDD8 /* Main.storyboard */,
+				9BA7BE501CB754610060C0C7 /* resouse */,
 				9BC6BAC21CACC66B0008FDD8 /* Images.xcassets */,
 				9BC6BAC41CACC66B0008FDD8 /* LaunchScreen.xib */,
 				9BC6BAB51CACC66B0008FDD8 /* Supporting Files */,
@@ -131,17 +154,6 @@
 				9BC6BAD01CACC66B0008FDD8 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9BC6BADF1CACD2430008FDD8 /* resouse */ = {
-			isa = PBXGroup;
-			children = (
-				9BC6BAE01CACD2430008FDD8 /* directory.png */,
-				9BC6BAE11CACD2430008FDD8 /* file.png */,
-				9BC6BAE21CACD2430008FDD8 /* image.png */,
-				9BC6BAE31CACD2430008FDD8 /* video.png */,
-			);
-			path = resouse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,13 +236,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BA7BE5E1CB754610060C0C7 /* image@3x.png in Resources */,
 				9BC6BAC11CACC66B0008FDD8 /* Main.storyboard in Resources */,
-				9BC6BAE51CACD2430008FDD8 /* file.png in Resources */,
-				9BC6BAE41CACD2430008FDD8 /* directory.png in Resources */,
+				9BA7BE5C1CB754610060C0C7 /* file@3x.png in Resources */,
+				9BA7BE601CB754610060C0C7 /* video@3x.png in Resources */,
+				9BA7BE5F1CB754610060C0C7 /* video.png in Resources */,
+				9BA7BE591CB754610060C0C7 /* directory.png in Resources */,
 				9BC6BAC61CACC66B0008FDD8 /* LaunchScreen.xib in Resources */,
+				9BA7BE5A1CB754610060C0C7 /* directory@3x.png in Resources */,
 				9BC6BAC31CACC66B0008FDD8 /* Images.xcassets in Resources */,
-				9BC6BAE71CACD2430008FDD8 /* video.png in Resources */,
-				9BC6BAE61CACD2430008FDD8 /* image.png in Resources */,
+				9BA7BE5B1CB754610060C0C7 /* file.png in Resources */,
+				9BA7BE5D1CB754610060C0C7 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +466,7 @@
 				9BC6BAD71CACC66B0008FDD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9BC6BAD81CACC66B0008FDD8 /* Build configuration list for PBXNativeTarget "ZKFileViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +475,7 @@
 				9BC6BADA1CACC66B0008FDD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
