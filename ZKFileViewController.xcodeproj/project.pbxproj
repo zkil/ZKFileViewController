@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		338AD001621FDDA73CCD4E9A /* Pods_ZKFileViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C2B1176C4560C90EF15FAC /* Pods_ZKFileViewController.framework */; };
 		9BA7BE591CB754610060C0C7 /* directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE511CB754610060C0C7 /* directory.png */; };
 		9BA7BE5A1CB754610060C0C7 /* directory@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE521CB754610060C0C7 /* directory@3x.png */; };
 		9BA7BE5B1CB754610060C0C7 /* file.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BA7BE531CB754610060C0C7 /* file.png */; };
@@ -36,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FFEB842A842C4A1D3BF2833 /* Pods-ZKFileViewController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKFileViewController.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKFileViewController/Pods-ZKFileViewController.release.xcconfig"; sourceTree = "<group>"; };
+		53C2B1176C4560C90EF15FAC /* Pods_ZKFileViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKFileViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F159BC76CD9980103CB5C94 /* Pods-ZKFileViewController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKFileViewController.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKFileViewController/Pods-ZKFileViewController.debug.xcconfig"; sourceTree = "<group>"; };
 		9BA7BE511CB754610060C0C7 /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directory.png; sourceTree = "<group>"; };
 		9BA7BE521CB754610060C0C7 /* directory@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directory@3x.png"; sourceTree = "<group>"; };
 		9BA7BE531CB754610060C0C7 /* file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = file.png; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338AD001621FDDA73CCD4E9A /* Pods_ZKFileViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +84,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A084223F391A1C9B6DDB562 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53C2B1176C4560C90EF15FAC /* Pods_ZKFileViewController.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B73130271DCD5B63C7FFAA6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F159BC76CD9980103CB5C94 /* Pods-ZKFileViewController.debug.xcconfig */,
+				0FFEB842A842C4A1D3BF2833 /* Pods-ZKFileViewController.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9BA7BE501CB754610060C0C7 /* resouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +122,8 @@
 				9BC6BAB41CACC66B0008FDD8 /* ZKFileViewController */,
 				9BC6BACE1CACC66B0008FDD8 /* ZKFileViewControllerTests */,
 				9BC6BAB31CACC66B0008FDD8 /* Products */,
+				7B73130271DCD5B63C7FFAA6 /* Pods */,
+				0A084223F391A1C9B6DDB562 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BC6BAD51CACC66B0008FDD8 /* Build configuration list for PBXNativeTarget "ZKFileViewController" */;
 			buildPhases = (
+				AAB35A52234ABD86298BC510 /* [CP] Check Pods Manifest.lock */,
 				9BC6BAAE1CACC66B0008FDD8 /* Sources */,
 				9BC6BAAF1CACC66B0008FDD8 /* Frameworks */,
 				9BC6BAB01CACC66B0008FDD8 /* Resources */,
+				A43797E72B3048822758815B /* [CP] Embed Pods Frameworks */,
+				3BFFE1BBCBF9BA2BB165BE8A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +232,7 @@
 				TargetAttributes = {
 					9BC6BAB11CACC66B0008FDD8 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = C2Y8Q3RAAW;
 					};
 					9BC6BACA1CACC66B0008FDD8 = {
 						CreatedOnToolsVersion = 6.4;
@@ -258,6 +286,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BFFE1BBCBF9BA2BB165BE8A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKFileViewController/Pods-ZKFileViewController-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A43797E72B3048822758815B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKFileViewController/Pods-ZKFileViewController-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAB35A52234ABD86298BC510 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9BC6BAAE1CACC66B0008FDD8 /* Sources */ = {
@@ -393,8 +469,10 @@
 		};
 		9BC6BAD61CACC66B0008FDD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F159BC76CD9980103CB5C94 /* Pods-ZKFileViewController.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C2Y8Q3RAAW;
 				INFOPLIST_FILE = ZKFileViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -404,8 +482,10 @@
 		};
 		9BC6BAD71CACC66B0008FDD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FFEB842A842C4A1D3BF2833 /* Pods-ZKFileViewController.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C2Y8Q3RAAW;
 				INFOPLIST_FILE = ZKFileViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

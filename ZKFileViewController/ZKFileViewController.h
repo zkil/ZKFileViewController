@@ -12,5 +12,13 @@
 @property(nonatomic,strong)NSString *rootDirectory;
 @property(nonatomic)BOOL showFileSize;
 
--(id)initWithRootDirectory:(NSString *)rootDirectory;
+
+/**
+ 创建一个文件管理控制器
+
+ @param rootDirectory 根目录
+
+ @return ZKFileViewController
+ */
+- (instancetype)initWithRootDirectory:(NSString *)rootDirectory;
 @end

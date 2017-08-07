@@ -7,6 +7,9 @@
 //
 
 #import "ZKFileViewController.h"
+#import <Masonry/Masonry.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
 
 #define SCREEN_FRAME [UIScreen mainScreen].bounds
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -15,132 +18,136 @@
 
 @interface ZKFileViewController ()<UIAlertViewDelegate>
 {
-    NSFileManager *_fileManager;
-    UITableView *_fileTable;
-    NSArray *_paths;
     
-    NSString *_currentPath;
-    NSString *_parentPath;
     
-    BOOL _isRoot;
+    
+
+    
     BOOL _deleteIndex;
 }
+
+@property (nonatomic,strong) UITableView *tableView;
+
+//当前路径
+@property (nonatomic,strong) NSString *currentPath;
+//当前目录下路径
+@property (nonatomic,strong) NSArray *paths;
+
+@property (nonatomic,strong) NSFileManager *fileManager;
+
 @end
 
 @implementation ZKFileViewController
 
--(id)initWithRootDirectory:(NSString *)rootDirectory{
+- (instancetype)initWithRootDirectory:(NSString *)rootDirectory{
     if (self = [super init]) {
         _rootDirectory = rootDirectory;
     }
     return self;
 }
 
--(NSString *)rootDirectory{
-    if (_rootDirectory == nil) {
-        _rootDirectory = DOCUMENT_PATH;
-    }
-    return _rootDirectory;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-   _currentPath = self.rootDirectory;
-    self.title = [_currentPath lastPathComponent];
     
-    
-    _fileManager = [NSFileManager defaultManager];
-    
-    _fileTable = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _fileTable.delegate = self;
-    _fileTable.dataSource = self;
-    [_fileTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.view addSubview:_fileTable];
-    
-    
-    if ([ _fileTable respondsToSelector:@selector(setSeparatorInset:)]) {
-        [ _fileTable setSeparatorInset:UIEdgeInsetsZero];
-        
-    }
-    if ([ _fileTable respondsToSelector:@selector(setLayoutMargins:)])  {
-        [ _fileTable setLayoutMargins:UIEdgeInsetsZero];
-    }
-    
+    self.fileManager = [NSFileManager defaultManager];
+    [self initUI];
     [self loadPath];
     
 }
 
--(void)loadPath{
+#pragma -mark- 
+- (void) initUI {
+    self.currentPath = self.rootDirectory;
+    
+    self.title = [self.currentPath lastPathComponent];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:self.tableView];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+}
 
+//获取路径
+-(void)loadPath{
+    //获取当前目录所有路径（包括文件）
+    self.paths = [self.fileManager contentsOfDirectoryAtPath:self.currentPath error:nil];
     
-    _parentPath = [_currentPath stringByDeletingLastPathComponent];
-    
-    _paths = [_fileManager contentsOfDirectoryAtPath:_currentPath error:nil];
-    
+    //排序
     [self sortPath];
     
-    if ([_currentPath isEqualToString:self.rootDirectory]) {
-        _isRoot = YES;
-    }else{
-        _isRoot = NO;
-        _paths = [@[@"..."] arrayByAddingObjectsFromArray:_paths];
+    if (![self.currentPath isEqualToString:self.rootDirectory]) {
+        //不是根路径添加返回项
+        self.paths = [@[@"..."] arrayByAddingObjectsFromArray:self.paths];
     }
     
-    [_fileTable reloadData];
+    [self.tableView reloadData];
     
     
 }
 
+//目录或文件排序 （文件夹在上，文件在下）
 -(void)sortPath{
     NSMutableArray *filePaths = [NSMutableArray new];
     NSMutableArray *directoryPaths = [NSMutableArray new];
     
-
-    
-    for (NSString *path in _paths) {
+    for (NSString *path in self.paths) {
         BOOL isDectory;
-        BOOL flag = [_fileManager fileExistsAtPath:[_currentPath stringByAppendingPathComponent:path] isDirectory:&isDectory];
+        BOOL flag = [self.fileManager fileExistsAtPath:[_currentPath stringByAppendingPathComponent:path] isDirectory:&isDectory];
         if (flag && isDectory) {
             [directoryPaths addObject:path];
         }else if (flag && !isDectory){
             [filePaths addObject:path];
         }
     }
+    
     [filePaths sortUsingSelector:@selector(compare:)];
     [directoryPaths sortUsingSelector:@selector(compare:)];
-    _paths = [directoryPaths arrayByAddingObjectsFromArray:filePaths];
+    self.paths = [directoryPaths arrayByAddingObjectsFromArray:filePaths];
 }
 
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _paths.count;
+    return self.paths.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    NSString *path = _paths[indexPath.row];
+    NSString *path = self.paths[indexPath.row];
     
-    NSString *directoryPath = [_currentPath stringByAppendingPathComponent:path];
     UIImage *image;
+    
+    NSString *directoryPath = [self.currentPath stringByAppendingPathComponent:path];
+    
     BOOL isDirectory;
-    BOOL flag = [_fileManager fileExistsAtPath:directoryPath isDirectory:&isDirectory];
+    BOOL flag = [self.fileManager fileExistsAtPath:directoryPath isDirectory:&isDirectory];
     
     NSString *pathComponent= [path lastPathComponent];
     
-    if (flag) {
-        if (isDirectory) {
-            
+    if (flag) {  //是否存在
+        if (isDirectory) { //是否文件夾
              image = [UIImage imageNamed:@"directory.png"];
         }else{
             
-            if ([directoryPath hasSuffix:@".png"]) {
+            NSString *MIMEType = [self getMIMETypeWithCAPIAtFilePath:directoryPath];
+            
+            if ([MIMEType rangeOfString:@"image"].location != NSNotFound) {
                 image = [UIImage imageNamed:@"image.png"];
-            }else if ([directoryPath hasSuffix:@".mov"]||[path hasSuffix:@".mp4"]){
+            } else if ([MIMEType rangeOfString:@"video"].location != NSNotFound) {
                 image = [UIImage imageNamed:@"video.png"];
-            }else{
+            } else {
                 image = [UIImage imageNamed:@"file.png"];
             }
         }
+        
         CGFloat fileSize = [self folderSizeAtPath:[_currentPath stringByAppendingPathComponent:pathComponent]];
         if (fileSize > 0 && self.showFileSize) {
             pathComponent = [NSString stringWithFormat:@"%@ ( %.2fm )",pathComponent,fileSize];
@@ -157,29 +164,55 @@
     return cell;
 }
 
+- (NSString *)getMIMETypeWithCAPIAtFilePath:(NSString *)path {
+    if (![[[NSFileManager alloc] init] fileExistsAtPath:path]) {
+        return nil;
+    }
+    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)[path pathExtension], NULL);
+    CFStringRef MIMEType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
+    CFRelease(UTI);
+    NSString *type = (__bridge_transfer NSString *)(MIMEType);
+    //CFRelease(MIMEType);
+    if (type == nil) {
+        type = @"application/octet-stream";
+    }
+    return type;
+}
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *path = _paths[indexPath.row];
     
-    if (!_isRoot && indexPath.row == 0) {
-        _currentPath = _parentPath;
+    NSString *parentPath = [self.currentPath stringByDeletingLastPathComponent];
+    if (indexPath.row == 0 && ![self.currentPath isEqualToString:self.rootDirectory]) {
+        self.currentPath = parentPath;
         [self loadPath];
     }
     else{
         
         BOOL isDiretory;
-        BOOL flag = [_fileManager fileExistsAtPath:[_currentPath stringByAppendingPathComponent:path] isDirectory:&isDiretory];
+        BOOL flag = [self.fileManager fileExistsAtPath:[self.currentPath stringByAppendingPathComponent:path] isDirectory:&isDiretory];
         if (flag && isDiretory) {
-            _currentPath = [_currentPath stringByAppendingPathComponent:path];
+            self.currentPath = [_currentPath stringByAppendingPathComponent:path];
             [self loadPath];
             
         }else if(flag){
+            //这里处理点击文件事件
             
+            NSString *MIMEType = [self getMIMETypeWithCAPIAtFilePath:[self.currentPath stringByAppendingPathComponent:path]];
+            
+            if ([MIMEType rangeOfString:@"image"].location != NSNotFound) {
+                
+            } else if ([MIMEType rangeOfString:@"video"].location != NSNotFound) {
+               
+            } else {
+               
+            }
         }
 
     }
     
-    self.title = [_currentPath lastPathComponent];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -259,6 +292,21 @@
     [self loadPath];
 }
 
+
+#pragma -mark- getter
+//默认为Document
+- (NSString *)rootDirectory {
+    if (_rootDirectory == nil) {
+        _rootDirectory = DOCUMENT_PATH;
+    }
+    return _rootDirectory;
+}
+
+- (void)setCurrentPath:(NSString *)currentPath {
+    _currentPath = currentPath;
+    
+    self.title = [_currentPath lastPathComponent];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
