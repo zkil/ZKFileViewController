@@ -18,11 +18,7 @@
 
 @interface ZKFileViewController ()<UIAlertViewDelegate>
 {
-    
-    
-    
 
-    
     BOOL _deleteIndex;
 }
 
